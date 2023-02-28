@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         </h1>
         <p className="mt-5 text-lg">Earn up to 1M points overnight while this bot grinds for you</p>
         <div className="items-center space-x-6">
-        <a href="/zb-bot.zip" download>
+        <a href="/files/zb-bot.zip" download>
           <button className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-40 h-12">
             Download
           </button>
