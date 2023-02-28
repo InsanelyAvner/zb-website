@@ -61,8 +61,70 @@ const Docs: NextPage = () => {
                     Closing the browser or the terminal will stop the bot.
                 </p>
             </div>
+            <div className="flex mt-10 items-center space-x-3">
+                <p className="text-left font-medium">
+                The best way to run the bot is to run it from id 1 all the way to the max id (eg. 26000). You may continue from where you left off if the bot is stopped. The id of next article that should botted is saved in the file <code>start_id.txt</code>
+                </p> 
+            </div>
+            <div className="flex mt-10 items-center space-x-3">
+                <p className="text-left font-medium">
+                    Closing the browser or the terminal will stop the bot.
+                </p>
+            </div>
         </div>
 
+
+
+        <h2 className="sm:text-3xl text-2xl max-w-2xl font-bold text-slate-900 mt-16">
+          Possible Errors
+        </h2>
+        <div className="max-w-xl w-full">
+            <div className="flex mt-10 items-center space-x-3">
+                <Image
+                src="/1-black.png"
+                width={30}
+                height={30}
+                alt="1 icon"
+                className="mb-5 sm:mb-0"
+                />
+                <p className="text-left font-medium">
+                <span className="text-xl">Chrome Download Error</span>
+                  <Image
+                  src="/error-1.png"
+                  width={400}
+                  height={56}
+                  alt="Chrome Download Error"
+                  className="mb-5 sm:mb-5 mt-5"
+                  />
+                  To fix, click the up arrow and select the "keep" option
+                </p>
+            </div>
+            <div className="flex mt-10 items-center space-x-3">
+                <Image
+                src="/2-black.png"
+                width={30}
+                height={30}
+                alt="1 icon"
+                className="mb-5 sm:mb-0"
+                />
+                <p className="text-left font-medium">
+                  <span className="text-xl">Windows Defender Smartscreen Error</span>
+                  <Image
+                  src="/error-2.png"
+                  width={517}
+                  height={470}
+                  alt="1 icon"
+                  className="mb-5 sm:mb-5 mt-5"
+                  />
+                  To fix, click on <u>More info</u>, the click the white button saying "Run anyway"
+                </p>
+            </div>
+        </div>
+      <div className="flex mt-10 items-center space-x-3">
+          <p className="text-left font-medium">
+            This bot is safe to use. These alerts are just protective measures that target unrecognised files.
+          </p> 
+      </div>
       </main>
       <Footer />
     </div>
