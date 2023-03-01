@@ -15,25 +15,22 @@ const Home: NextPage = () => {
 
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mt-20">
-        <h1 className="sm:text-6xl text-4xl max-w-2xl font-bold text-slate-900">
+        <h1 className="sm:text-6xl text-4xl max-w-2xl font-bold text-slate-900 text-transparent bg-clip-text bg-gradient-to-r dark:bg-gradient-to-r from-blue-600 to-cyan-500">
           The Best ZaoBao Bot
         </h1>
-        <p className="mt-5 text-lg">Earn up to 1M points overnight while this bot grinds for you</p>
-        <div className="items-center space-x-6">
-        <a href="/files/zb-bot.zip" download>
-          <button className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-40 h-12">
-            Download
-          </button>
-        </a>
-        
-        <Link href="docs">
-          <button className="border-2 border-black rounded-xl font-medium px-4 py-2 sm:mt-10 mt-8 w-40 h-12">
-            Docs &rarr;
-          </button>
-        </Link>
-        
+        <p className="mt-5 text-lg">The best botting tool to easily appear top in ZaoBao leaderboards.</p>
+        <div className="flex items-center space-x-6">
+          <a href="/files/zb-bot.zip" download>
+            <button className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-40 h-12">
+              Download
+            </button>
+          </a>
+          <Link href="docs">
+            <button className="border-2 border-black rounded-xl font-medium px-4 py-2 sm:mt-10 mt-8 w-40 h-12">
+              Docs &rarr;
+            </button>
+          </Link>
         </div>
-
       </main>
       <Footer />
     </div>
