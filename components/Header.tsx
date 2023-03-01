@@ -12,7 +12,7 @@ export default function Header() {
       <div>
         <Link href="/" className="mr-4 text-zinc-700 text-lg">Home</Link>
         <Link href="/docs" className="text-zinc-700 text-lg">Docs</Link>
-        <a download href="/files/zb-bot.zip" className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-40 h-12 ml-4">Download</a>
+        <a download href="https://github.com/InsanelyAvner/zb-website/raw/master/public/files/zb-bot.zip" className="bg-black rounded-xl text-white font-medium px-4 py-2 sm:mt-10 mt-8 hover:bg-black/80 w-40 h-12 ml-4">Download</a>
       </div>
 
     </header>

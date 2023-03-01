@@ -39,9 +39,9 @@ const Docs: NextPage = () => {
                 className="mb-5 sm:mb-0"
                 />
                 <p className="text-left font-medium">
-                Enter your ZBSchools username into <code>username.txt</code> and password into <code>password.txt</code>{" "}
+                  Run <code>main.exe</code> and enter your username and password. Thn, enter the ID of the article that you want to start from.<br></br>
                 <span className="text-slate-500">
-                    (this is a one-time process)
+                    (I recommend you to bot starting from id 1 all the way to 27000. This way, you can go through all the articles)
                 </span>
                 </p>
             </div>
@@ -54,32 +54,19 @@ const Docs: NextPage = () => {
                 className="mb-5 sm:mb-0"
                 />
                 <p className="text-left font-medium">
-                Run <code>main.exe</code> and enter the starting id to bot from. Id of the article is the unique number in the url<br></br>
-                <span className="text-slate-500">
-                    (For example, <a href="https://www.zbschools.sg/stories-26263" target="_blank" style={{textDecoration: "underline"}}>zbschools.sg/stories-26263</a> has an id of 26263)
-                </span>
+                  A new window will pop up. Do not close the window or the console unless you want to stop the bot. To continue from the ID you last stopped at, you can choose the "start from where you last stopped" option when running the program
                 </p>
             </div>
 
             <div className="flex mt-10 items-center space-x-3">
                 <p className="text-left font-medium">
-                The best way to run the bot is to run it from id 1 all the way to the max id (eg. 26000). You may continue from where you left off if the bot is stopped. The id of next article that should botted is saved in the file <code>start_id.txt</code>
+                  The ID of where you last stopped is stored in the file <code>data/start_id.txt</code>. You may manualy access the file and input the ID or choose the option to continue from where you last stopped
                 </p> 
             </div>
             <div className="flex mt-10 items-center space-x-3">
                 <p className="text-left font-medium">
-                    Closing the browser or the terminal will stop the bot.
-                </p>
-            </div>
-            <div className="flex mt-10 items-center space-x-3">
-                <p className="text-left font-medium">
-                The best way to run the bot is to run it from id 1 all the way to the max id (eg. 26000). You may continue from where you left off if the bot is stopped. The id of next article that should botted is saved in the file <code>start_id.txt</code>
+                  To update the bot, remember your start id, download the newest version here, enter your username and password, then enter your start id.
                 </p> 
-            </div>
-            <div className="flex mt-10 items-center space-x-3">
-                <p className="text-left font-medium">
-                    Closing the browser or the terminal will stop the bot.
-                </p>
             </div>
         </div>
 
