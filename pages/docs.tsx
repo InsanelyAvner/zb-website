@@ -18,7 +18,17 @@ const Docs: NextPage = () => {
         <h1 className="sm:text-6xl text-4xl max-w-2xl font-bold text-slate-900">
           Documentation
         </h1>
-        <p className="mt-5 text-lg">A guide on how to use the bot</p>
+        <p className="mt-5 text-lg">A complete guide on how to use the bot and extra troubleshooting</p>
+        <h2 className="sm:text-3xl text-2xl max-w-2xl font-bold text-slate-900 mt-12 mb-4">Requirements</h2>
+        <div className="max-w-xl">
+          <ul className="list-disc list-inside text-left font-medium">
+            <li>Operating System: Windows 10 or Higher</li>
+            <li>Memory: 4GB or higher</li>
+            <li>Web Browser: Chrome</li>
+            <li>FInished ZaoBao Intro Quiz</li>
+          </ul>
+        </div>
+        <h2 className="sm:text-3xl text-2xl max-w-2xl font-bold text-slate-900 mt-16">How to Use</h2>
         <div className="max-w-xl w-full">
             <div className="flex mt-10 items-center space-x-3">
                 <Image
@@ -72,7 +82,6 @@ const Docs: NextPage = () => {
                 </p>
             </div>
         </div>
-
 
 
         <h2 className="sm:text-3xl text-2xl max-w-2xl font-bold text-slate-900 mt-16">
