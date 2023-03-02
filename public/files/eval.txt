@@ -7,12 +7,17 @@ import json
 import runpy
 import requests
 
+with open("data/bot.json") as f:
+    CURRENT_VERSION = json.load(f)["version"]
+
 CONTINUE = False
 storylink = "https://www.zbschools.sg/stories-"
 
 print("\nWelcome to ZB Bot!")
 
 # Check for updates
+with open("data/bot.json") as f:
+    CURRENT_VERSION = json.load(f)["version"]
 res = requests.get("https://zb-bot.vercel.app/api/get-version")
 res_json = res.json()
 
