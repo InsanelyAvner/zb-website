@@ -29,7 +29,6 @@ if not os.path.exists("data/data.json"):
     inp_username = input("\nEnter your username: ")
     inp_password = input("Enter your password: ")
 
-    os.mkdir("data")
     with open("data/data.json", "w") as f:
         json.dump({"username": inp_username, "password": inp_password}, f)
     with open("data/start_id.txt", "w") as f:
