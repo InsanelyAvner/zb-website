@@ -24,6 +24,7 @@ const Docs: NextPage = () => {
           <ul className="list-disc list-inside text-left font-medium">
             <li>Operating System: Windows 10 or Higher</li>
             <li>Memory: 4GB or higher</li>
+            <li>Stable Internet Connection</li>
             <li>Web Browser: Chrome</li>
             <li>FInished ZaoBao Intro Quiz</li>
           </ul>
