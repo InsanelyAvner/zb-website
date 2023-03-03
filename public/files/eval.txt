@@ -13,7 +13,7 @@ with open("data/bot.json") as f:
 CONTINUE = False
 storylink = "https://www.zbschools.sg/stories-"
 
-print("\nWelcome to ZB Bot!")
+print("\nWelcome to Zki Kai's ZB Bot!")
 
 # Check for updates
 with open("data/bot.json") as f:
