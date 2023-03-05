@@ -139,4 +139,5 @@ def main():
             DoQuiz()
         except Exception as e:
             print(e)
-            pass
+            while 1:
+                pass
