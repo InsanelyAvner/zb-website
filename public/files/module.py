@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.by import By
 import os
 import json
 import requests
@@ -68,7 +68,8 @@ def remove(string, removestr):
 def Login():
     driver.get("https://www.zbschools.sg/cos/o.x?c=/ca7_zbs/user&func=login")
     wait = WebDriverWait(driver, 10)
-    wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+    # wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+    wait.until(EC.presence_of_element_located(("tag name", "body")))
     Login = driver.find_element('xpath', "//a[@id='login']")
     Login.click()
     user = driver.find_element('id', "inputLoginId")
