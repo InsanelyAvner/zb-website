@@ -9,6 +9,7 @@ import os
 import json
 import runpy
 import requests
+import traceback
 
 with open("data/bot.json") as f:
     CURRENT_VERSION = json.load(f)["version"]
@@ -134,4 +135,9 @@ def DoQuiz():
 
 Login()
 while(1):
-    DoQuiz()
+    try:
+        DoQuiz()
+    except Exception:
+        print(traceback.format_exc())
+        while 1:
+            pass
