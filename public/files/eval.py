@@ -7,7 +7,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import os
 import json
-import runpy
 import requests
 
 with open("data/bot.json") as f:
@@ -136,5 +135,6 @@ Login()
 while(1):
     try:
         DoQuiz()
-    except:
-        exit(1)
+    except Exception as e:
+        print(e)
+        pass
