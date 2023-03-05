@@ -2,14 +2,10 @@ import time
 import pinyin
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 import os
 import json
 import runpy
 import requests
-import traceback
 
 with open("data/bot.json") as f:
     CURRENT_VERSION = json.load(f)["version"]
@@ -17,12 +13,11 @@ with open("data/bot.json") as f:
 CONTINUE = False
 storylink = "https://www.zbschools.sg/stories-"
 
-print("\nWelcome to ZB Bot!")
+print("\nWelcome to Avner's ZB Bot!")
 
 # Check for updates
 with open("data/bot.json") as f:
     CURRENT_VERSION = json.load(f)["version"]
-    
 res = requests.get("https://zb-bot.vercel.app/api/get-version")
 res_json = res.json()
 
@@ -52,30 +47,28 @@ with open("data/start_id.txt") as f:
 if start_id != "1":
     choice = input(f"\nWould you start from where you last stopped, ID {start_id}? (y/n): ")
     if choice.lower() == "y":
-        startpost = int(start_id)
+        startpost = start_id
     else:
         startpost = int(input('\nEnter Start ID: '))
 else:
     startpost = int(input('\nEnter Start ID (Recommended: Start from id 1 all the way to 27000, continue from where you last stopped): '))
 
-
-options = webdriver.ChromeOptions()
-options.add_experimental_option('excludeSwitches', ['enable-logging'])
+options = Options()
 driver = webdriver.Chrome(options=options)
-
 
 def remove(string, removestr):
     return string.replace(removestr, "")
 
 def Login():
     driver.get("https://www.zbschools.sg/cos/o.x?c=/ca7_zbs/user&func=login")
-    wait = WebDriverWait(driver, 10)
-    wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+    time.sleep(1)
     Login = driver.find_element('xpath', "//a[@id='login']")
     Login.click()
     user = driver.find_element('id', "inputLoginId")
+    user.click()
     user.send_keys(username)
     password = driver.find_element('id', "inputPassword")
+    password.click()
     password.send_keys(pw)
     button = driver.find_element('id', "btn_submit")
     button.click()
@@ -83,17 +76,17 @@ def Login():
 def DoQuiz():
     global startpost
     driver.get(storylink + str(startpost))
-
-    if (str(driver.current_url) != storylink + str(startpost)):
+    currentUrl = str(driver.current_url)
+    if (currentUrl != storylink + str(startpost)):
         startpost += 1
         return
-    
+    # print(str(startpost))
     try:
-        passage = driver.find_element('xpath', "html/body/div/div/div/div/div/div[3]/div/div[1]/div[1]/div[6]").text
-        passage = remove(passage, '"')
         startquiz = driver.find_element('xpath', "//a[@class='btn btn-assign']")
         startquiz.click()
-        time.sleep(0.75)
+        time.sleep(1)
+        passage = driver.find_element('xpath', "html/body/div/div/div/div/div/div[3]/div/div[1]/div[1]/div[6]").text
+        passage = remove(passage, '"')
         driver.switch_to.frame('litebox_iframe')
         count = len(driver.find_elements('xpath', "/html/body/div/div/form/div"))
         for q in range(1, count):
@@ -101,43 +94,45 @@ def DoQuiz():
             try:
                 text = driver.find_element('xpath', f"/html/body/div/div/form/div[{q}]/div[1]/div[1]/h3/span").text
             except:
+                # No Question
+                # print('no question')
                 pass
-            # Answer is from passage
-            if '_' not in text:
-                pinyin_text = driver.find_element('xpath', f"/html/body/div/div/form/div[{q}]/div[1]/div[1]/h3/span/b").text
-                answer = pinyin.get(pinyin_text)
-            elif "_" in text:
-                Output = text.split('_')
-                first = passage.find(Output[0])
-                last = passage.find((Output[len(Output) - 1]))
-                r = range((last - first) - len(Output[0]))
-
-                for n in r:
-                    answer = passage[n + first + len(Output[0])]
-
-            # Find correct option
-            for a in range(1, count):
-                option_text = driver.find_element('xpath', f"/html/body/div/div/form/div[{q}]/div[2]/table/tbody/tr[{a}]/td[2]").text
-                option = driver.find_element('xpath', f"/html/body/div/div/form/div[{q}]/div[2]/table/tbody/tr[{a}]/td[1]/input")
-
-                if answer == option_text:
-                    option.click()
-
+            if ('_' in text):
+                try:
+                    Output = text.split('_')
+                    a = passage.find(Output[0])
+                    b = passage.find((Output[len(Output) - 1]))
+                    r = range((b - a) - len(Output[0]))
+                    answer = ''
+                    for n in r:
+                        answer = answer + passage[n + a + len(Output[0])]
+                except:
+                    # print('Crashed')
+                    pass
+            else:
+                try:
+                    tpy = driver.find_element('xpath', f"/html/body/div/div/form/div[{q}]/div[1]/div[1]/h3/span/b").text
+                    answer = pinyin.get(tpy)
+                except:
+                    ('stop crashing')
+            qcount = len(driver.find_elements('xpath', f"/html/body/div/div/form/div[{q}]/div[2]/table/tbody/tr"))
+            for a in range(1, qcount + 1):
+                optext = driver.find_element('xpath', f"/html/body/div/div/form/div[{q}]/div[2]/table/tbody/tr[{a}]/td[2]").text
+                optext = (remove(optext, " "))
+                opt = driver.find_element('xpath', f"/html/body/div/div/form/div[{q}]/div[2]/table/tbody/tr[{a}]/td[1]/input")
+                if answer == optext:
+                    opt.click()
         submit = driver.find_element('xpath', f"/html/body/div/div/form/div[{count}]/input")
         submit.click()
     except:
+        # print(str(startpost))
         pass
-    
+
     startpost += 1
 
     with open("data/start_id.txt", "w") as f:
         f.write(str(startpost))
 
 Login()
-while(1):
-    try:
-        DoQuiz()
-    except Exception:
-        print(traceback.format_exc())
-        while 1:
-            pass
+while(True):
+    DoQuiz()
