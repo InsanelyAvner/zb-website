@@ -141,6 +141,7 @@ def main(start_id=False):
 
     else:
         startpost = int(start_id)
+        print(startpost)
         Login()
         while(1):
             try:
