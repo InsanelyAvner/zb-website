@@ -9,63 +9,20 @@ import os
 import json
 import requests
 
-with open("data/bot.json") as f:
-    CURRENT_VERSION = json.load(f)["version"]
-
-CONTINUE = False
-storylink = "https://www.zbschools.sg/stories-"
-
-print("\nWelcome to ZB Bot!")
-
-# Check for updates
-with open("data/bot.json") as f:
-    CURRENT_VERSION = json.load(f)["version"]
-    
-res = requests.get("https://zb-bot.vercel.app/api/get-version")
-res_json = res.json()
-
-if res_json["version"] != CURRENT_VERSION:
-    print("\nALERT: UPDATE AVAILABLE! Download the newest version at https://zb-bot.vercel.app. Remember to save your start id!\n")
-
-if not os.path.exists("data/data.json"):
-    print("\nPlease enter your ZaoBao username and password (this is a one time process)")
-    inp_username = input("\nEnter your username: ")
-    inp_password = input("Enter your password: ")
-
-    with open("data/data.json", "w") as f:
-        json.dump({"username": inp_username, "password": inp_password}, f)
-    with open("data/start_id.txt", "w") as f:
-        f.write("1")
-        
-
-with open("data/data.json") as f:
-    data = json.load(f)
-
-    username = data["username"]
-    pw = data["password"]
-
-with open("data/start_id.txt") as f:
-    start_id = f.read()
-
-if start_id != "1":
-    choice = input(f"\nWould you start from where you last stopped, ID {start_id}? (y/n): ")
-    if choice.lower() == "y":
-        startpost = int(start_id)
-    else:
-        startpost = int(input('\nEnter Start ID: '))
-else:
-    startpost = int(input('\nEnter Start ID (Recommended: Start from id 1 all the way to 27000, continue from where you last stopped): '))
-
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 driver = webdriver.Chrome(options=options)
 
-
 def remove(string, removestr):
     return string.replace(removestr, "")
 
 def Login():
+    with open("data/data.json") as f:
+        data = json.load(f)
+
+        username = data["username"]
+        pw = data["password"]
     driver.get("https://www.zbschools.sg/cos/o.x?c=/ca7_zbs/user&func=login")
     wait = WebDriverWait(driver, 10)
     # wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
@@ -81,6 +38,8 @@ def Login():
 
 def DoQuiz():
     global startpost
+    storylink = "https://www.zbschools.sg/stories-"
+
     driver.get(storylink + str(startpost))
 
     if (str(driver.current_url) != storylink + str(startpost)):
@@ -132,12 +91,62 @@ def DoQuiz():
     with open("data/start_id.txt", "w") as f:
         f.write(str(startpost))
 
-def main():
-    Login()
-    while(1):
-        try:
-            DoQuiz()
-        except Exception as e:
-            print(e)
-            while 1:
-                pass
+def main(start_id=False):
+    if not start_id:
+        with open("data/bot.json") as f:
+            CURRENT_VERSION = json.load(f)["version"]
+
+        print("\nWelcome to ZB Bot!")
+
+        # Check for updates
+        with open("data/bot.json") as f:
+            CURRENT_VERSION = json.load(f)["version"]
+            
+        res = requests.get("https://zb-bot.vercel.app/api/get-version")
+        res_json = res.json()
+
+        if res_json["version"] != CURRENT_VERSION:
+            print("\nALERT: UPDATE AVAILABLE! Download the newest version at https://zb-bot.vercel.app. Remember to save your start id!\n")
+
+        if not os.path.exists("data/data.json"):
+            print("\nPlease enter your ZaoBao username and password (this is a one time process)")
+            inp_username = input("\nEnter your username: ")
+            inp_password = input("Enter your password: ")
+
+            with open("data/data.json", "w") as f:
+                json.dump({"username": inp_username, "password": inp_password}, f)
+            with open("data/start_id.txt", "w") as f:
+                f.write("1")
+                
+
+        with open("data/start_id.txt") as f:
+            start_id = f.read()
+
+        if start_id != "1":
+            choice = input(f"\nWould you start from where you last stopped, ID {start_id}? (y/n): ")
+            if choice.lower() == "y":
+                startpost = int(start_id)
+            else:
+                startpost = int(input('\nEnter Start ID: '))
+        else:
+            startpost = int(input('\nEnter Start ID (Recommended: Start from id 1 all the way to 27000, continue from where you last stopped): '))
+        
+        Login()
+        while(1):
+            try:
+                DoQuiz()
+            except Exception as e:
+                print(e)
+                while 1:
+                    pass
+
+    else:
+        startpost = start_id
+        Login()
+        while(1):
+            try:
+                DoQuiz()
+            except Exception as e:
+                print(e)
+                while 1:
+                    pass
