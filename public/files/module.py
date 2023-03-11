@@ -50,7 +50,7 @@ def DoQuiz(startpost=1):
         passage = remove(passage, '"')
         startquiz = driver.find_element('xpath', "//a[@class='btn btn-assign']")
         startquiz.click()
-        time.sleep(0.75)
+        time.sleep(1.5)
         driver.switch_to.frame('litebox_iframe')
         count = len(driver.find_elements('xpath', "/html/body/div/div/form/div"))
         for q in range(1, count):
