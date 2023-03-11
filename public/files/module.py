@@ -36,8 +36,7 @@ def Login():
     button = driver.find_element('id', "btn_submit")
     button.click()
 
-def DoQuiz():
-    global startpost
+def DoQuiz(startpost=1):
     storylink = "https://www.zbschools.sg/stories-"
 
     driver.get(storylink + str(startpost))
@@ -141,11 +140,11 @@ def main(start_id=False):
                     pass
 
     else:
-        startpost = start_id
+        startpost = int(start_id)
         Login()
         while(1):
             try:
-                DoQuiz()
+                DoQuiz(startpost)
             except Exception as e:
                 print(e)
                 while 1:
