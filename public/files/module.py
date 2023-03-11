@@ -43,6 +43,10 @@ def DoQuiz(startpost=1):
 
     if (str(driver.current_url) != storylink + str(startpost)):
         startpost += 1
+
+        with open("data/start_id.txt", "w") as f:
+            f.write(str(startpost))
+            
         return
     
     try:
