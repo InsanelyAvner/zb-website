@@ -146,6 +146,7 @@ def main(start_id=False):
         while(1):
             try:
                 DoQuiz(startpost)
+                startpost += 1
             except Exception as e:
                 print(e)
                 while 1:
