@@ -7,7 +7,7 @@ export default function Footer() {
         Made by Avner
       </div>
       <div className="flex space-x-4 pb-4 sm:pb-0">
-        Please do not copy this bot
+        This bot is made for fun, not to cheat
       </div>
     </footer>
   );

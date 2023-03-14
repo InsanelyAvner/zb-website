@@ -8,18 +8,18 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <meta
             name="description"
-            content="The Best ZaoBao Bot"
+            content="A Fast and Reliable Zaobao Bot"
           />
           <meta property="og:site_name" content="zb-bot.vercel.app" />
           <meta
             property="og:description"
-            content="The Best ZaoBao Bot"
+            content="A Fast and Reliable Zaobao Bot"
           />
-          <meta property="og:title" content="ZB Bot" />
-          <meta name="twitter:title" content="ZB Bot" />
+          <meta property="og:title" content="Mecha" />
+          <meta name="twitter:title" content="Mecha" />
           <meta
             name="twitter:description"
-            content="The Best ZaoBao Bot"
+            content="A Fast and Reliable Zaobao Bot"
           />
         </Head>
         <body>
